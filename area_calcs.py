@@ -24,8 +24,8 @@ def estimate_area(ui_x0, ui_y0, ui_r, points):
             estimated_area = The estimated area of the circle using only the points given to the function
             actual_area = The calculated area of the circle. A = (1/2)*b*h
             percent_diff = Percentage difference between the actual area and the estimated area [%]
-            elapsed_time_estimate = Total elapsed time to estimate the area of the circle
-            elapsed_time_actual = Total elapsed time to calculate the area of the circle using A = (1/2)*b*h
+            elapsed_time_estimate = Total elapsed time [s] to estimate the area of the circle
+            elapsed_time_actual = Total elapsed time [s] to calculate the area of the circle using A = (1/2)*b*h
     """
     # Start the function timer
     start_estimate = timer()
