@@ -169,80 +169,80 @@ def dist_between_points(sorted_pts_angle):
     return dist_array
 
 
-### Testing the Code
-# Parameters
-x0 = -1
-y0 = -5
-r = 2
-num_points = 4
-
-# Generate Equal and Random Points
-rand_pts = grp.gen_randomspaced_pts(x0, y0, r, num_points)
-equal_pts = gep.gen_equispaced_pts(x0, y0, r, num_points)
-
-# Normalize the points to (0,0)
-norm_rand = normalize_to_origin(x0, y0, rand_pts)
-norm_equal = normalize_to_origin(x0, y0, equal_pts)
-
-# Random Point Calcs to get x,y arrays
-x_rand = []
-y_rand = []
-for pt in rand_pts:
-    x = pt[0]
-    y = pt[1]
-    x_rand.append(x)
-    y_rand.append(y)
-
-x_rand_norm = []
-y_rand_norm = []
-for pt in norm_rand:
-    x = pt[0]
-    y = pt[1]
-    x_rand_norm.append(x)
-    y_rand_norm.append(y)
-
-# Equal Point Calcs to get x,y arrays
-x_equal = []
-y_equal = []
-for pt in equal_pts:
-    x = pt[0]
-    y = pt[1]
-    x_equal.append(x)
-    y_equal.append(y)
-
-x_equal_norm = []
-y_equal_norm = []
-for pt in norm_equal:
-    x = pt[0]
-    y = pt[1]
-    x_equal_norm.append(x)
-    y_equal_norm.append(y)
-
-# Plotting the Points
-fig, axes = plt.subplots(1, 2)
-
-# Plot Random Points
-axes[0].scatter(x_rand, y_rand, label='Original')
-axes[0].scatter(x0, y0, label='Original Origin')
-axes[0].scatter(x_rand_norm, y_rand_norm, label='Normalized')
-axes[0].scatter(0, 0, label='New Origin')
-axes[0].set_title("Randomly Spaced")
-axes[0].legend(loc='upper left')
-
-# Plot Equally Spaced Points
-axes[1].scatter(x_equal, y_equal, label='Original')
-axes[1].scatter(x0, y0, label='Original Origin')
-axes[1].scatter(x_equal_norm, y_equal_norm, label='Normalized')
-axes[1].scatter(0, 0, label='New Origin')
-axes[1].set_title("Equally Spaced")
-axes[1].legend(loc='upper left')
-
-# Show Plots
-plt.show()
-
-# Testing Areas Function
-area_equal = estimate_area(x0, y0, r, equal_pts)
-print(area_equal)
-
-area_rand = estimate_area(x0, y0, r, rand_pts)
-print(area_rand)
+# ### Testing the Code
+# # Parameters
+# x0 = -1
+# y0 = -5
+# r = 2
+# num_points = 4
+#
+# # Generate Equal and Random Points
+# rand_pts = grp.gen_randomspaced_pts(x0, y0, r, num_points)
+# equal_pts = gep.gen_equispaced_pts(x0, y0, r, num_points)
+#
+# # Normalize the points to (0,0)
+# norm_rand = normalize_to_origin(x0, y0, rand_pts)
+# norm_equal = normalize_to_origin(x0, y0, equal_pts)
+#
+# # Random Point Calcs to get x,y arrays
+# x_rand = []
+# y_rand = []
+# for pt in rand_pts:
+#     x = pt[0]
+#     y = pt[1]
+#     x_rand.append(x)
+#     y_rand.append(y)
+#
+# x_rand_norm = []
+# y_rand_norm = []
+# for pt in norm_rand:
+#     x = pt[0]
+#     y = pt[1]
+#     x_rand_norm.append(x)
+#     y_rand_norm.append(y)
+#
+# # Equal Point Calcs to get x,y arrays
+# x_equal = []
+# y_equal = []
+# for pt in equal_pts:
+#     x = pt[0]
+#     y = pt[1]
+#     x_equal.append(x)
+#     y_equal.append(y)
+#
+# x_equal_norm = []
+# y_equal_norm = []
+# for pt in norm_equal:
+#     x = pt[0]
+#     y = pt[1]
+#     x_equal_norm.append(x)
+#     y_equal_norm.append(y)
+#
+# # Plotting the Points
+# fig, axes = plt.subplots(1, 2)
+#
+# # Plot Random Points
+# axes[0].scatter(x_rand, y_rand, label='Original')
+# axes[0].scatter(x0, y0, label='Original Origin')
+# axes[0].scatter(x_rand_norm, y_rand_norm, label='Normalized')
+# axes[0].scatter(0, 0, label='New Origin')
+# axes[0].set_title("Randomly Spaced")
+# axes[0].legend(loc='upper left')
+#
+# # Plot Equally Spaced Points
+# axes[1].scatter(x_equal, y_equal, label='Original')
+# axes[1].scatter(x0, y0, label='Original Origin')
+# axes[1].scatter(x_equal_norm, y_equal_norm, label='Normalized')
+# axes[1].scatter(0, 0, label='New Origin')
+# axes[1].set_title("Equally Spaced")
+# axes[1].legend(loc='upper left')
+#
+# # Show Plots
+# plt.show()
+#
+# # Testing Areas Function
+# area_equal = estimate_area(x0, y0, r, equal_pts)
+# print(area_equal)
+#
+# area_rand = estimate_area(x0, y0, r, rand_pts)
+# print(area_rand)
