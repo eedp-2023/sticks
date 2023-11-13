@@ -9,12 +9,21 @@ def gen_randomspaced_pts( ui_x0, ui_y0, ui_r, ui_num_points):
     while i != ui_num_points + 1: #stopping the loop once it gets to the required amount of coordinates
         x = random.uniform(ui_x0 - ui_r, ui_x0 + ui_r) #generate a random x values from ui_r-ui_x0 to ui_r+ui_xo
         if x not in x_values: #making sure the value is not already in the list
-            y = ((ui_r ** 2) + (x ** 2)) ** 0.5 #finding the y coordinate
+
+            y1 = ui_y0 - (((ui_r ** 2) - (abs(ui_x0-x) ** 2)) ** 0.5) #finding the y0-y coordinate
+            y2 = ui_y0 + (((ui_r ** 2) - (abs(ui_x0 - x) ** 2)) ** 0.5)  # finding the  y0+y coordinate
+
+            y = random.choice([y1,y2]) #randomly choose if y will be on the top or bottom half of the circle
             if y not in y_values: #making sure the value is not ready in the list
-                if y >= ui_y0 - ui_r or y >= ui_y0 + ui_r: #double checking that the y value is in the appropriate range
+                if y >= (ui_y0 - ui_r) or y >= (ui_y0 + ui_r): #double checking that the y value is in the appropriate range
                     x_values.append(x)
                     y_values.append(y)
                     i+=1
                     random_pts.append([x,y])
+                elif y >= -(ui_y0 - ui_r) or y >= -(ui_y0 + ui_r): #double checking that the y value is in the appropriate range
+                    x_values.append(x)
+                    y_values.append(-y)
+                    i+=1
+                    random_pts.append([x,-y])
 
     return random_pts
