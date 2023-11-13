@@ -1,4 +1,5 @@
 import math
+from timeit import default_timer as tock
 
 def gen_equispaced_pts( ui_x0, ui_y0, ui_r, ui_num_points):
     equi_pts = [[0]*2 for _ in range(ui_num_points)]   # Initializes an N x 2 array for storing {x,y} coords of points
@@ -103,6 +104,34 @@ def perimetergetter(points):
             perimeter = perimeter + length
     return perimeter
 
+def perimeterfunction(points,ui_x0,ui_y0,ui_r):
+    
+    # overall perimeter function
+    # inputs are a list of points, center point x and y coord and radius
+    # calls defined functions as well as tracks calculation time
+    # outputs list of float values
+    # [ estiamted perimeter, actual perimeter, percent difference,
+    #   estimated calcualtion time, actual calculation time ]
+    
+    tstart = tock()
+    n_p = normalize_to_origin(ui_x0, ui_y0, points)
+    sorted_points = pointsort(n_p)
+    peri=perimetergetter(sorted_points)
+    tend = tock()
+    elapsed = tend-tstart
+    
+    tstart = tock()
+    actual_peri = 2*math.pi*ui_r
+    tend = tock()
+    actual_elapsed = tend-tstart
+    
+    difference = ((actual_peri - peri)/actual_peri)*100
+    
+    final = [peri, actual_peri, difference, elapsed, actual_elapsed]
+    
+    return final
+
+    
 ui_x0=2
 ui_y0=2
 ui_r=2
@@ -111,11 +140,17 @@ ui_num_points=6
 points = gen_equispaced_pts(ui_x0, ui_y0, ui_r, ui_num_points)
 points_2 = gen_randomspaced_pts(ui_x0, ui_y0, ui_r, ui_num_points)
 
-n_p = normalize_to_origin(ui_x0, ui_y0, points)
-n_p_2 = normalize_to_origin(ui_x0, ui_y0, points_2)
+dookie = perimeterfunction(points,ui_x0,ui_y0,ui_r)
 
-sorted_points = pointsort(n_p)
-sorted_points_2 = pointsort(n_p_2)
+# n_p = normalize_to_origin(ui_x0, ui_y0, points)
+# n_p_2 = normalize_to_origin(ui_x0, ui_y0, points_2)
 
-peri = perimetergetter(sorted_points)
-peri_2 = perimetergetter(sorted_points_2)
+# sorted_points = pointsort(n_p)
+# sorted_points_2 = pointsort(n_p_2)
+
+# peri = perimetergetter(sorted_points)
+# peri_2 = perimetergetter(sorted_points_2)
+
+# actual = 2 * ui_r * math.pi
+# difference = ((actual - peri)/actual)*100
+# final = ["The calculated perimeter is", ui_num_points]
