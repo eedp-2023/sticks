@@ -46,10 +46,11 @@ def estimate_area(ui_x0, ui_y0, ui_r, points):
     tri_angle_array = []
     for pt_dist in point_distances:
         # Area of an isosceles triangle = 0.5*b*h
-        tri_area = 0.5*pt_dist*ui_r
+        h = (ui_r**2 - (pt_dist/2)**2)**(1/2)
+        tri_area = 0.5*pt_dist*h
         tri_angle_array.append(tri_area)
 
-    # Add up the total area of all of the triangles
+    # Add up the total area of all the triangles
     estimated_area = round(sum(tri_angle_array), 2)
     end_estimate = timer()
     elapsed_time_estimate = end_estimate - start_estimate
@@ -109,7 +110,7 @@ def find_angles(points):
 
         # Find the Angle of each Point
         if x != 0:
-            theta = round(math.degrees(math.atan(y / x)),3)
+            theta = round(math.degrees(math.atan(y / x)), 3)
 
         # Determine angle depending on the quadrant of the point
         if x > 0 and y > 0:  # Quadrant 1
@@ -173,7 +174,7 @@ def dist_between_points(sorted_pts_angle):
 x0 = -1
 y0 = -5
 r = 2
-num_points = 16
+num_points = 4
 
 # Generate Equal and Random Points
 rand_pts = grp.gen_randomspaced_pts(x0, y0, r, num_points)
@@ -218,7 +219,7 @@ for pt in norm_equal:
     y_equal_norm.append(y)
 
 # Plotting the Points
-fig, axes = plt.subplots(1,2)
+fig, axes = plt.subplots(1, 2)
 
 # Plot Random Points
 axes[0].scatter(x_rand, y_rand, label='Original')
