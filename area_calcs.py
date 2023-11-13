@@ -173,7 +173,7 @@ def dist_between_points(sorted_pts_angle):
 x0 = -5
 y0 = -5
 r = 2
-num_points = 8
+num_points = 10
 
 # Generate Equal and Random Points
 rand_pts = grp.gen_randomspaced_pts(x0, y0, r, num_points)
@@ -240,5 +240,8 @@ axes[1].legend(loc='upper left')
 plt.show()
 
 # Testing Areas Function
-angles = estimate_area(x0, y0, r, equal_pts)
-print(angles)
+area_equal = estimate_area(x0, y0, r, equal_pts)
+print(area_equal)
+
+area_rand = estimate_area(x0, y0, r, rand_pts)
+print(area_rand)
