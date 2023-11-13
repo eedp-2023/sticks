@@ -1,3 +1,4 @@
+import math
 def gen_equispaced_pts( ui_x0, ui_y0, ui_r, ui_num_points):
     equi_pts = [[0]*2 for _ in range(ui_num_points)]   # Initializes an N x 2 array for storing {x,y} coords of points
 
