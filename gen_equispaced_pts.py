@@ -9,9 +9,4 @@ def gen_equispaced_pts( ui_x0, ui_y0, ui_r, ui_num_points):
         equi_pts[i][1] = ui_y0 + ui_r*math.sin(math.radians(i*(360/ui_num_points)))
 
 
-    # Store the first point at a distance r from the center with same y coord.
-    #equi_pts[0][0] = ui_x0 + ui_r
-    #equi_pts[0][1] = ui_y0
-
-
     return equi_pts
