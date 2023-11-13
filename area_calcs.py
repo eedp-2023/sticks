@@ -170,10 +170,10 @@ def dist_between_points(sorted_pts_angle):
 
 ### Testing the Code
 # Parameters
-x0 = -5
+x0 = -1
 y0 = -5
 r = 2
-num_points = 8
+num_points = 16
 
 # Generate Equal and Random Points
 rand_pts = grp.gen_randomspaced_pts(x0, y0, r, num_points)
