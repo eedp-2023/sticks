@@ -57,6 +57,12 @@ def normalize_to_origin(ui_x0, ui_y0, points):
     return normalized_points
 
 def pointsort(points):
+    
+    #inputs list of points on circle, any number/list length
+    #splits list of points into a top and bottom section based on normalized center point
+    # --- DOES NOT FUNCTION IF POINTS ARE NOT NORMALLIZED TO 0,0 ----
+    #returns list of points (as two float list) sorted in clockwise direction
+    
     top,bot=[],[]
     for point in points:
         if point[1] >= 0:
@@ -70,6 +76,10 @@ def pointsort(points):
     return outputs
 
 def distancegetter(pointa,pointb):
+    
+    #distance calculator between two points using pythagorean theorem
+    #returns float value
+    
     dx = pointa[0]-pointb[0]
     dy = pointa[1]-pointb[1]
     dL = math.sqrt(dx**2+dy**2)
@@ -77,6 +87,12 @@ def distancegetter(pointa,pointb):
     return dL
 
 def perimetergetter(points):
+    
+    #inputs sorted list of points from pointsort()
+    #iterates over list of points and calls distance getter for each pair
+    #try/except for IndexError as last point will throw error at end of list
+    #returns float value for total perimeter
+    
     perimeter = 0
     for i in range(len(points)):
         try:
