@@ -8,14 +8,9 @@ import math
 import operator as op
 
 def estimate_area(ui_x0, ui_y0, ui_r, points):
-    # Find the angle of the point to be able to sort nearest neighbor
-
+    ### Find the angle of the point to be able to sort nearest neighbor
     # Normalize the points so that the origin is at (0,0)
     norm_pts = normalize_to_origin(ui_x0, ui_y0, points)
-
-    # Allocate Arrays
-    x_array = []
-    y_array = []
 
     # Find Angles in the form of a list [x, y, theta]
     pts_angles = find_angles(norm_pts)
@@ -24,12 +19,25 @@ def estimate_area(ui_x0, ui_y0, ui_r, points):
     pts_angles_sorted = sorted(pts_angles, key=op.itemgetter(2))
 
     # Take the points now in order and find the distance between points
-    dist_array = []
-    for pt in pts_angles_sorted:
-        x, y = pt[0], pt[1]
-        
+    point_distances = dist_between_points(pts_angles_sorted)
 
-    return pts_angles_sorted
+    # Solve for the area of each isosceles triangle
+    tri_angle_array = []
+    for pt_dist in point_distances:
+        # Area of an isosceles triangle = 0.5*b*h
+        tri_area = 0.5*pt_dist*ui_r
+        tri_angle_array.append(tri_area)
+
+    # Add up the total area of all of the triangles
+    estimated_area = sum(tri_angle_array)
+
+    # Calculate the actual area of the circle
+    actual_area = math.pi * ui_r**2
+
+    # Different
+
+    return estimated_area, actual_area
+
 
 def normalize_to_origin(ui_x0, ui_y0, points):
     # Take the points and normalize them assuming an origin at 0,0
@@ -40,6 +48,7 @@ def normalize_to_origin(ui_x0, ui_y0, points):
         normalized_points.append([x_new, y_new])
 
     return normalized_points
+
 
 def find_angles(points):
     # Find the angle of a set of points that lies on a circle of origin (0,0)
@@ -77,12 +86,32 @@ def find_angles(points):
 
     return angles
 
+
+def dist_between_points(sorted_pts_angle):
+    # Take the points in order and find the distance between them
+    dist_array = []
+    for i in range(0, len(sorted_pts_angle)):
+        # Previous coordinate. For the first iteration, it will be the last item in the list
+        coordinate_0 = sorted_pts_angle[i - 1]
+        x_0, y_0 = coordinate_0[0], coordinate_0[1]
+
+        # Second coordinate. For the first iteration, it will be the first item in the list
+        coordinate_1 = sorted_pts_angle[i]
+        x_1, y_1 = coordinate_1[0], coordinate_1[1]
+
+        # Find distance between these two points
+        dist = math.sqrt((x_1 - x_0) ** 2 + (y_1 - y_0) ** 2)
+        dist_array.append(dist)
+
+    return dist_array
+
+
 ### Testing the Code
 # Paramters
 ui_x0 = -5
 ui_y0 = -5
 ui_r = 2
-ui_num_points = 10
+ui_num_points = 8
 
 # Generate Equal and Random Points
 rand_pts = grp.gen_randomspaced_pts(ui_x0, ui_y0, ui_r, ui_num_points)
