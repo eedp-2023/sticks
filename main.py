@@ -71,21 +71,25 @@ for pt in equal_pts:
 x_equal_norm = []
 y_equal_norm = []
 # Plotting the Points
-fig, axes = plt.subplots(1, 2)
-# Plot Random Points
-axes[0].scatter(x_rand, y_rand, label='Original')
-axes[0].scatter(ui_x0, ui_y0, label='Original Origin')
-# axes[0].scatter(x_rand_norm, y_rand_norm, label='Normalized')
-# axes[0].scatter(0, 0, label='New Origin')
-axes[0].set_title("Randomly Spaced")
-axes[0].legend(loc='upper left')
-# Plot Equally Spaced Points
-axes[1].scatter(x_equal, y_equal, label='Original')
-axes[1].scatter(ui_x0, ui_y0, label='Original Origin')
-# axes[1].scatter(x_equal_norm, y_equal_norm, label='Normalized')
-# axes[1].scatter(0, 0, label='New Origin')
-axes[1].set_title("Equally Spaced")
-axes[1].legend(loc='upper left')
+if ui_spacing == "1":
+    # Plot Equally Spaced Points
+    fig, axes = plt.subplots()
+    axes.scatter(x_equal, y_equal, label='Points')
+    axes.scatter(ui_x0, ui_y0, label='Origin')
+    # axes[1].scatter(x_equal_norm, y_equal_norm, label='Normalized')
+    # axes[1].scatter(0, 0, label='New Origin')
+    axes.set_title("Equally Spaced")
+    axes.legend(loc='upper left')
+elif ui_spacing == "2":
+    fig, axes = plt.subplots()
+    # Plot Random Points
+    axes.scatter(x_rand, y_rand, label='Points')
+    axes.scatter(ui_x0, ui_y0, label='Origin')
+    # axes[0].scatter(x_rand_norm, y_rand_norm, label='Normalized')
+    # axes[0].scatter(0, 0, label='New Origin')
+    axes.set_title("Randomly Spaced")
+    axes.legend(loc='upper left')
+
 # Show Plots
 print("Close the Plot window to view Extra Credit")
 plt.show()
