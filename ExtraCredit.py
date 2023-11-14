@@ -12,9 +12,9 @@ import snrubArea
 
 #User Inputs
 maxN = 100
-rCirc = 1
-x0 = 0
-y0 = 0
+rCirc = 10
+x0 = 1
+y0 = 2
 doRand = 0
 
 #Init Variables
@@ -88,7 +88,13 @@ plt.title('Area Estimation using Monte Carlo Integration')
 
 #Extra Credit 3
 #Estimate pi using monte carlo integration
-
-piEst = monteArea[-1]
-print(piEst)
+#To get a more accurate and repeatable value, the central limit theorem should be used:
+countr = 0
+piSum = 0
+while countr<100:
+    piEst,runTime = snrubArea.monteArea(1,10000)
+    piSum = piSum+piEst
+    countr+=1
+print('The value of π is approx: ')
+print(piSum/100)
 plt.show()
