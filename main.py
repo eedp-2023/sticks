@@ -3,6 +3,7 @@ import area_calcs as ac
 import gen_randomspaced_pts as grp
 import gen_equispaced_pts as gep
 import matplotlib.pyplot as plt
+import perimeter as perim
 import math
 
 """ Import Libraries and Functions """
@@ -29,22 +30,23 @@ else:
 #Perform Point Generations
 rand_pts = grp.gen_randomspaced_pts(ui_x0, ui_y0, ui_r, ui_num_points)
 equal_pts = gep.gen_equispaced_pts(ui_x0, ui_y0, ui_r, ui_num_points)
-# Calculate circumference
 
+# Calculate circumference
+if ui_spacing == "1":
+    perim_calc = perim.perimeterfunction(equal_pts, ui_x0, ui_y0, ui_r)
+    print(f"Estimated Circumference: {perim_calc[0]} \nCalculated Circumference: {perim_calc[1]} \n% Difference: {perim_calc[2]} \nEstimated Circumference Calc Time: {perim_calc[3]} \nActual Circumference Calc Time: {perim_calc[4]} \n")
+elif ui_spacing=="2":
+    perim_calc = perim.perimeterfunction(rand_pts, ui_x0, ui_y0, ui_r)
+    print(f"Estimated Circumference: {perim_calc[0]} \nCalculated Circumference: {perim_calc[1]} \n% Difference: {perim_calc[2]} \nEstimated Circumference Calc Time: {perim_calc[3]} \nActual Circumference Calc Time: {perim_calc[4]} \n")
 
 # Calculate area
 if ui_spacing == "1":
     Area_Calc = ac.estimate_area(ui_x0, ui_y0, ui_r, equal_pts)
-    print(Area_Calc)
-    # print(f"Estimated Area: {Area_Calc(1)}")
+    print(f"Estimated Area: {Area_Calc[0]} \nCalculated Area: {Area_Calc[1]} \n% Difference: {Area_Calc[2]} \nEst Area Calc Time: {Area_Calc[3]} \nActual Area Calc Time: {Area_Calc[4]} \n")
+
 elif ui_spacing=="2":
     Area_Calc = ac.estimate_area(ui_x0, ui_y0, ui_r, rand_pts)
-    print(Area_Calc)
-    # print(f"Estimated Area: {Area_Calc(0)} + Calculated Area: {Area_Calc(1)} + Percent Difference: {Area_Calc(2)}")
-
-# Extra Credit
-
-
+    print(f"Estimated Area: {Area_Calc[0]} \nCalculated Area: {Area_Calc[1]} \n% Difference: {Area_Calc[2]} \nEst Area Calc Time: {Area_Calc[3]} \nActual Area Calc Time: {Area_Calc[4]} \n")
 
 # Display Final Results
 # # Random Point Calcs to get x,y arrays
