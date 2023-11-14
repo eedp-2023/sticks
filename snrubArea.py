@@ -20,7 +20,7 @@ def monteArea(ui_r,nPts):
         x = random.randrange(0,nPts)
         y = random.randrange(0, nPts)
         distSqrd = x*x+y*y #calc distance
-        if distSqrd<nPtsSqrd:
+        if distSqrd<=nPtsSqrd:
             #Inside the quater circle, count it
             countIn+=1
         countAll+=1
